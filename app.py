@@ -62,15 +62,26 @@ def signup():
     else:
         return render_template('signup.html')
 
+
+@app.get('/login')
+def login():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        email = request.form.get('email')
+        password = request.form.get('password')
+        confirm_password = request.form.get('confirm_password')
+
+    # ensuring that only non empty passwords are allowed
+        if empty(firstname="default", username, email, password):
+            message = 'please fill all available'
+            return render_template('signup.html', message=message)
+    return render_template('login.html')
+
+
 @app.get('/users')
 def users():
     all_users = User.query.all()
     return render_template('users.html', users = all_users)
-
-
-@app.get('/login')
-def login():
-    return render_template('login.html')
 
 
 
