@@ -29,6 +29,18 @@ def check_user(email, username):
     conn.close()
     return [result1, result2]
 
+def find_user(username, password):
+    query = f'SELECT firstname FROM User WHERE username={username} AND password={password}'
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    try:
+        cursor.execute(query)
+        found_user = cursor.fetchone()
+    except:
+        found_user = None
+    print(found_user)
+    return found_user
+
 class PasswordCheck:
     def __init__(self, password1, password2):
         self.password1 = password1

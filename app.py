@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, abort, redirect
 from models import db, User, Books
 import sqlite3
 from queries import create_user, check_user, PasswordCheck, EmailCheck
-from queries import signup_empty, signin_empty
+from queries import signup_empty, signin_empty, find_user
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///library.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -63,20 +63,23 @@ def signup():
         return render_template('signup.html')
 
 
-@app.get('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         username = request.form.get('username')
-        email = request.form.get('email')
         password = request.form.get('password')
-        confirm_password = request.form.get('confirm_password')
-
     # ensuring that only non empty passwords are allowed
         if signin_empty(username, password):
             message = 'please fill all available'
             return render_template('login.html', message=message)
-    
-    
+
+        global user
+        user = find_user(username, password)
+        if user:
+            return render_template('user.html',user=user)
+        else:
+            message = 'Invalid username or password'
+            return render_template('login.html',message=message)
     return render_template('login.html')
 
 
