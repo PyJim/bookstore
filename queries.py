@@ -19,11 +19,11 @@ def check_user(email, username):
     username_query = f'SELECT * FROM User WHERE username = {username}'
     conn = get_db_connection()
     try:
-        result1 = conn.execute(email_query).fetchall()
+        result1 = conn.execute(email_query).fetchone()
     except:
         result1 = None
     try:
-        result2 = conn.execute(username_query).fetchall()
+        result2 = conn.execute(username_query).fetchone()
     except:
         result2 = None
     conn.close()
@@ -47,10 +47,15 @@ class EmailCheck:
     def invalid(self):
         return "@" not in self.email
 
-def empty(firstname, username, email, password):
+def signup_empty(username, email, password, firstname):
     first = firstname == ''
     user = username == ''
     email = email == ''
     pwd = password == ''
 
     return first or user or email or pwd
+
+def signin_empty(username, password):
+    user = username == ''
+    pwd = password == ''
+    return user or pwd
