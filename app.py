@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, abort, redirect
 from models import db, User, Books
+from flask_bcrypt import Bcrypt
 import sqlite3
 from queries import create_user, check_user, PasswordCheck, EmailCheck
 from queries import signup_empty, signin_empty, find_user
@@ -8,6 +9,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///library.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db.init_app(app)
+bcrypt = Bcrypt(app)
 
 @app.get('/')
 def home():
@@ -55,6 +57,7 @@ def signup():
             message = f'{username} already exist'
             return render_template('signup.html', message=message)
         else:
+            password = bcrypt.generate_password_hash(password).decode('utf-8')
             create_user(firstname, username, email, password)
             message = f'Account created successfully'
             return render_template('login.html', message=message)
@@ -74,12 +77,16 @@ def login():
             return render_template('login.html', message=message)
 
         global user
-        user = find_user(username, password)
-        if user:
-            return render_template('user.html',user=user)
-        else:
-            message = 'Invalid username or password'
+        user = find_user(username)
+        correct_password = bcrypt.check_password_hash(user.password, password)
+        if user and correct_password:
+            return render_template('user.html',user=user.firstname)
+        elif user:
+            message = 'Invalid password'
             return render_template('login.html',message=message)
+        else:
+            message = 'Username does not exist'
+            return render_template('login.html', message=message)
     return render_template('login.html')
 
 
@@ -87,9 +94,6 @@ def login():
 def users():
     all_users = User.query.all()
     return render_template('users.html', users = all_users)
-
-
-
 
 
 if __name__ == '__main__':

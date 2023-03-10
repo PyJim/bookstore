@@ -1,44 +1,28 @@
-from flask import Flask, render_template, request, abort, redirect
-from models import db, User, Books
+from flask import g
+from models import User, Books, db
 import sqlite3
 
+DATABASE_FILE = 'library'
 
 def get_db_connection():
-    conn = sqlite3.connect('library.db')
-    conn.row_factory = sqlite3.Row
+    conn = getattr(g, '_database', None)
+    if conn is None:
+        conn = g._database = sqlite3.connect(DATABASE_FILE)
+        conn.row_factory = sqlite3.Row
     return conn
 
 def create_user(firstname, username, email, password):
-    user = User(firstname=firstname, username=username,
-                email=email, password=password)
+    user = User(firstname=firstname, username=username, email=email, password=password)
     db.session.add(user)
     db.session.commit()
     
 def check_user(email, username):
-    email_query = f'SELECT * FROM User WHERE email={email}'
-    username_query = f'SELECT * FROM User WHERE username = {username}'
-    conn = get_db_connection()
-    try:
-        result1 = conn.execute(email_query).fetchone()
-    except:
-        result1 = None
-    try:
-        result2 = conn.execute(username_query).fetchone()
-    except:
-        result2 = None
-    conn.close()
-    return [result1, result2]
+    email_check = User.query.filter_by(email=email).first()
+    username_check = User.query.filter_by(username=username).first()
+    return [email_check, username_check]
 
-def find_user(username, password):
-    query = f'SELECT firstname FROM User WHERE username={username} AND password={password}'
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    try:
-        cursor.execute(query)
-        found_user = cursor.fetchone()
-    except:
-        found_user = None
-    print(found_user)
+def find_user(username):
+    found_user = User.query.filter_by(username=username).first()
     return found_user
 
 class PasswordCheck:

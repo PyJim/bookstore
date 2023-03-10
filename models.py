@@ -1,6 +1,6 @@
 from flask import Flask, render_template, url_for, flash, redirect
-from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Text, Boolean, Integer, Column, ForeignKey
+from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, date
 
 db = SQLAlchemy()
