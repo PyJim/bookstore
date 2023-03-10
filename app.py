@@ -4,6 +4,7 @@ from flask_bcrypt import Bcrypt
 import sqlite3
 from queries import create_user, check_user, PasswordCheck, EmailCheck
 from queries import signup_empty, signin_empty, find_user
+from queries import get_user_books, add_user_book, search_by_author, search_by_title, sort_books_by_author, sort_books_by_title, sort_books_by_date
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///library.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -80,7 +81,7 @@ def login():
         user = find_user(username)
         correct_password = bcrypt.check_password_hash(user.password, password)
         if user and correct_password:
-            return render_template('user.html',user=user.firstname)
+            return redirect(f'/<{user.id}>')
         elif user:
             message = 'Invalid password'
             return render_template('login.html',message=message)
@@ -90,14 +91,26 @@ def login():
     return render_template('login.html')
 
 @app.route('/<user_id>', methods=['GET','POST'])
-def users():
+def users(user_id):
+    books = get_user_books(user_id)
+    book_titles = [book.title for book in books]
+    book_authors = [book.author for book in books]
+    book_dates = [book.date for book in books]
+    print(book_titles)
+    return render_template('user.html', titles=book_titles, authors=book_authors, dates=book_dates)
+
+@app.get('/add')
+def add():
+    return render_template('add.html')
+
+
+@app.route('/add_book', methods=['GET', 'POST'])
+def add_book():
     if request.method == 'POST':
-        global user
-        user = None
-        return redirect('/')
-    
-    all_users = User.query.all()
-    return render_template('user.html', users = all_users)
+        title = request.form.get('title')
+        author = request.form.get('author')
+        add_user_book(author, title, user_id=user.id)
+    return redirect(f'/<{user.id}>')
 
 
 if __name__ == '__main__':

@@ -8,5 +8,17 @@
 </head>
 <body>
     <p>Welcome {{ user }}</p>
+    {% for title in titles %}
+        {% for author in authors %}
+            {% for date in dates %}
+                <div>
+                    <h4>{{ title }}</h4>
+                    <p>{{ author }}</p>
+                    <p>{{ date }}</p>
+                </div>
+            {% endfor %}
+        {% endfor %}
+    {% endfor %}
+    <a href="/add">Add Book</a>
 </body>
 </html>

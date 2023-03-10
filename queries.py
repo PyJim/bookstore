@@ -59,7 +59,7 @@ def signin_empty(username, password):
 
 # working on the books
 def get_user_books(user_id):
-    all_user_books = Books.query.filter_by(user_id=user_id)
+    all_user_books = Books.query.filter_by(user_id=user_id).all()
     return all_user_books
 
 def add_user_book(title, author, user_id):
