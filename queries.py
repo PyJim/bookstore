@@ -55,3 +55,48 @@ def signin_empty(username, password):
     user = username == ''
     pwd = password == ''
     return user or pwd
+
+
+# working on the books
+def get_user_books(user_id):
+    all_user_books = Books.query.filter_by(user_id=user_id)
+    return all_user_books
+
+def add_user_book(title, author, user_id):
+    new_book = Books(title=title, author=author, user_id=user_id)
+    db.session.add(new_book)
+    db.session.commit()
+
+def search_by_title(title, user_id):
+    matched_books = Books.query.filter_by(title=title, user_id=user_id).all()
+    return matched_books
+
+def search_by_author(author, user_id):
+    matched_books = Books.query.filter_by(author=author, user_id=user_id).all()
+    return matched_books
+
+
+def sort_books_by_date():
+    new_order = Books.query.order_by(Books.date)
+    return new_order
+
+def sort_books_by_title():
+    new_order = Books.query.order_by(Books.title)
+    return new_order
+
+def sort_books_by_author():
+    new_order = Books.query.order_by(Books.author)
+    return new_order
+
+def delete_all_books():
+    pass
+
+def delete_book():
+    pass
+
+
+def change_book_details():
+    pass
+# editing details
+def change_user_details(firstname, username, email, password):
+    pass

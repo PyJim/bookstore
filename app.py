@@ -89,11 +89,15 @@ def login():
             return render_template('login.html', message=message)
     return render_template('login.html')
 
-
-@app.get('/users')
+@app.route('/<user_id>', methods=['GET','POST'])
 def users():
+    if request.method == 'POST':
+        global user
+        user = None
+        return redirect('/')
+    
     all_users = User.query.all()
-    return render_template('users.html', users = all_users)
+    return render_template('user.html', users = all_users)
 
 
 if __name__ == '__main__':
