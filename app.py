@@ -106,6 +106,7 @@ def users(username):
     book_dates = [book.date for book in books]
     return render_template('user.html', titles=book_titles, authors=book_authors, dates=book_dates, firstname=firstname)
 
+
 @app.get('/add')
 def add():
     return render_template('add.html')
@@ -116,7 +117,10 @@ def add_book():
     if request.method == 'POST':
         title = request.form.get('title')
         author = request.form.get('author')
-        add_user_book(title=title, author=author, user_id=user.id)
+        
+        if title and author:
+            title, author = title.capitalize(), author.capitalize()
+            add_user_book(title=title, author=author, user_id=user.id)
     return redirect(f'/<{user.id}>')
 
 
