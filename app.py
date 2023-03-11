@@ -81,7 +81,7 @@ def login():
         user = find_user(username)
         correct_password = bcrypt.check_password_hash(user.password, password)
         if user and correct_password:
-            return redirect(f'/<{user.id}>')
+            return redirect(f'/{user.username}')
         elif user:
             message = 'Invalid password'
             return render_template('login.html',message=message)
@@ -90,14 +90,15 @@ def login():
             return render_template('login.html', message=message)
     return render_template('login.html')
 
-@app.route('/<user_id>', methods=['GET','POST'])
-def users(user_id):
-    user_id = user_id[1]
+@app.route('/<username>', methods=['GET','POST'])
+def users(username):
+    user_id = User.query.filter_by(username=username).first().id
+    firstname = User.query.filter_by(id=user_id).first().firstname
     books = get_user_books(user_id)
     book_titles = [book.title for book in books]
     book_authors = [book.author for book in books]
     book_dates = [book.date for book in books]
-    return render_template('user.html', titles=book_titles, authors=book_authors, dates=book_dates)
+    return render_template('user.html', titles=book_titles, authors=book_authors, dates=book_dates, firstname=firstname)
 
 @app.get('/add')
 def add():

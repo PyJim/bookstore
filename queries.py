@@ -67,6 +67,7 @@ def add_user_book(title, author, user_id):
     db.session.add(new_book)
     db.session.commit()
 
+#searching for book
 def search_by_title(title, user_id):
     matched_books = Books.query.filter_by(title=title, user_id=user_id).all()
     return matched_books

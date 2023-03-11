@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ user }}</title>
+    <title>{{ firstname }}</title>
 </head>
 <body>
-    <p>Welcome {{ user }}</p>
+    <p>Welcome {{ firstname }}</p>
     {% for title in titles %}
         {% set ind = titles.index(title) %}
         <div>
