@@ -92,11 +92,11 @@ def login():
 
 @app.route('/<user_id>', methods=['GET','POST'])
 def users(user_id):
+    user_id = user_id[1]
     books = get_user_books(user_id)
     book_titles = [book.title for book in books]
     book_authors = [book.author for book in books]
     book_dates = [book.date for book in books]
-    print(book_titles)
     return render_template('user.html', titles=book_titles, authors=book_authors, dates=book_dates)
 
 @app.get('/add')
@@ -109,7 +109,7 @@ def add_book():
     if request.method == 'POST':
         title = request.form.get('title')
         author = request.form.get('author')
-        add_user_book(author, title, user_id=user.id)
+        add_user_book(title=title, author=author, user_id=user.id)
     return redirect(f'/<{user.id}>')
 
 
