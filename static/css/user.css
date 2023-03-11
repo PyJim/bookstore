@@ -1,0 +1,140 @@
+.profile {
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: flex-start; /* Align items to the top */
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 20%;
+}
+
+.profile img {
+    max-width: 25%;
+    height: auto;
+    margin-right: 10px; /* Add margin to the right of the image */
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile button {
+    background-color:  #73c3f5;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: auto; /* Push the button to the right */
+}
+.profile button :hover{
+    background-color: #007bff;
+}
+
+
+h4 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+p {
+    margin: 0;
+    padding-bottom: 10px;
+}
+
+.book {
+    width: 100%;
+    border: 3px solid  #73c3f5;
+    padding: 5px;
+    margin-bottom: 50px;
+    margin-top: 130px;
+    border-radius: 15px;
+}
+.book:hover {
+    color: #73c3f5;
+}
+
+h4 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+h1 {
+    font-size: 45px;
+    color: #73c3f5;
+    margin-bottom: 5px;
+}
+
+.author {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.date {
+    font-size: 14px;
+    color: #999;
+    margin-bottom: 10px;
+}
+
+.add-link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    border: 2px solid #007bff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-right: 10px;
+  }
+  
+ 
+.add-link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    border: 2px solid #007bff;
+    padding: 5px 10px;
+    border-radius: 5px;
+  }
+  
+.add-link:hover {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+.edit-link {
+    color: #28a745;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+  }
+  
+.edit-link:hover {
+    color: #fff;
+  }
+  
+.logout-link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    border: 2px solid #007bff;
+    padding: 5px 10px;
+    border-radius: 5px;
+  }
+  
+.logout-link:hover {
+    background-color: #007bff;
+    color: #fff;
+  }
+.buttons-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 90%;
+}

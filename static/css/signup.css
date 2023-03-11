@@ -56,6 +56,10 @@ button[type="submit"] {
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
 }
+h1 {
+    text-align: center;
+    color: #73c3f5;
+}
 
 button[type="submit"]:hover {
     background-color:  #2e63e8;

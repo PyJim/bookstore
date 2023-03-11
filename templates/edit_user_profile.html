@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/edit.css') }}">
     <title>edit profile</title>
 </head>
 <body>
-    <h3>Edit user details</h3>
-    <img src="/static/images/dummy-profile-pic.png" alt="profile">
-    <p>{{user.username}}</p>
-
+    <div class="profile">
+        <h3>Edit user details</h3>
+        <img src="/static/images/dummy-profile-pic.png" alt="profile">
+        <p>{{user.username}}</p>
+    </div>
     <form action="{{ url_for("edit_user_profile") }}" method="post">
         <label for="firstname">Firstname</label>
         <input type="text" name="firstname" value={{firstname}}>
@@ -22,10 +24,12 @@
         <input type="password" name="current_password">
         <label for="new_password">New Password</label>
         <input type="password" name="new_password">
+        <br>
         <button type="submit">Save changes</button>
+        <a href="/{{user.username}}"><button type="submit">Return</button></a>
     </form>
-    <br>
-    <a href="/{{user.username}}"><button type="submit">Return</button></a>
+    
+
 
 </body>
 </html>

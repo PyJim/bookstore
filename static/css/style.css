@@ -1,44 +1,38 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
+  background-color: #ffffff;
+ 
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-.book {
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin-bottom: 20px;
+h1{
+  color: #007bff;
+  font-size: 64px;
 }
-
-h4 {
-  font-size: 18px;
-  color: #333;
-  margin-bottom: 5px;
-}
-
-.author {
-  font-size: 14px;
-  color: #666;
-  margin-bottom: 5px;
-}
-
-.date {
-  font-size: 14px;
-  color: #999;
-  margin-bottom: 10px;
+p{
+  font-size: 25px;
+  color: #414141;
 }
 
 a {
-  color: #007bff;
+  color: #ffffff;
+  background-color: #007bff;
   text-decoration: none;
   font-weight: bold;
+  border: 2px solid #007bff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  width: 150px;
+  text-align: center;
 }
 
 a:hover {
-  text-decoration: underline;
-}
-.welcome-msg {
-  font-size: 20px;
-  color: #333;
+  background-color: #447ad2;
+  color: white;
 }
 
 
