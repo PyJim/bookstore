@@ -81,12 +81,13 @@ def login():
 
         global user
         user = find_user(username)
-        correct_password = bcrypt.check_password_hash(user.password, password)
-        if user and correct_password:
-            return redirect(f'/{user.username}')
-        elif user:
-            message = 'Invalid password'
-            return render_template('login.html',message=message)
+        if user:
+            correct_password = bcrypt.check_password_hash(user.password, password)
+            if correct_password:
+                return redirect(f'/{user.username}')
+            elif user:
+                message = 'Invalid password'
+                return render_template('login.html',message=message)
         else:
             message = 'Username does not exist'
             return render_template('login.html', message=message)
@@ -129,6 +130,11 @@ def add_book():
             add_user_book(title=title, author=author, user_id=user.id)
     return redirect(f'/{user.username}')
 
+@app.get('/edit_user')
+def edit_user():
+    return render_template('edit_user_profile.html', user=user)
+
+
 @app.route('/edit_profile', methods=['GET', 'POST'])
 def edit_user_profile():
     global user
@@ -143,8 +149,6 @@ def edit_user_profile():
         current_password = request.form.get('current_password')
         new_password = request.form.get('new_password')
         return change_user_details(user_id=user.id, firstname=firstname, username=username, email=email, new_password=new_password, current_password=current_password)
-
-
     return render_template('edit_user_profile.html',email=email,username=username, firstname=firstname, user=user)
 
 

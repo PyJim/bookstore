@@ -15,19 +15,21 @@
     </div>
     <form action="{{ url_for("edit_user_profile") }}" method="post">
         <label for="firstname">Firstname</label>
-        <input type="text" name="firstname" value={{firstname}}>
+        <input type="text" name="firstname" value={{user.firstname}}>
         <label for="username">Username</label>
-        <input type="text" name="username" value={{username}}>
+        <input type="text" name="username" value={{user.username}}>
         <label for="email">Email</label>
-        <input type="email" name="email" value={{email}}>
+        <input type="email" name="email" value={{user.email}}>
         <label for="current_password">Current password</label>
         <input type="password" name="current_password">
         <label for="new_password">New Password</label>
         <input type="password" name="new_password">
         <br>
         <button type="submit">Save changes</button>
-        <a href="/{{user.username}}"><button type="submit">Return</button></a>
     </form>
+
+    <a href="/{{user.username}}"><button type="submit">Return</button></a>
+
     
 
 

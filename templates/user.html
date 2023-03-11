@@ -14,18 +14,14 @@
         <p>{{ current_user.firstname }}</p>
         <p>{{ current_user.username }}</p>
         <p>{{ current_user.email }}</p>
-        <a href="/edit_profile" class="edit-link"><button type="submit">Edit profile</button></a>
-        
+        <a href="/edit_user"><button type="submit">Edit</button></a>
     </div>
     {% for title in titles %}
         {% set ind = titles.index(title) %}
-<<<<<<< HEAD
         <div class="book">
-=======
         {% set number = ind + 1 %}
         <div class={{number}}>
             <p>{{number}}</p>
->>>>>>> 6dcf988 (book and user details edit route)
             <h4>{{ title }}</h4>
             <p>{{ authors[ind] }}</p>
             <p>{{ dates[ind] }}</p>
