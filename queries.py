@@ -2,7 +2,7 @@ from flask import g
 from models import User, Books, db
 import sqlite3
 
-DATABASE_FILE = 'library'
+DATABASE_FILE = '/instance/library.db'
 
 def get_db_connection():
     conn = getattr(g, '_database', None)

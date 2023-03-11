@@ -98,14 +98,18 @@ def logout():
 
 @app.route('/<username>', methods=['GET','POST'])
 def users(username):
-    user_id = User.query.filter_by(username=username).first().id
-    firstname = User.query.filter_by(id=user_id).first().firstname
-    books = get_user_books(user_id)
-    book_titles = [book.title for book in books]
-    book_authors = [book.author for book in books]
-    book_dates = [book.date for book in books]
-    return render_template('user.html', titles=book_titles, authors=book_authors, dates=book_dates, firstname=firstname)
-
+    user = find_user(username)
+    if user:
+        user_id = user.id
+        firstname = User.query.filter_by(id=user_id).first().firstname
+        books = get_user_books(user_id)
+        book_titles = [book.title for book in books]
+        book_authors = [book.author for book in books]
+        book_dates = [book.date for book in books]
+        return render_template('user.html', titles=book_titles, authors=book_authors, dates=book_dates, firstname=firstname)
+    else:
+        message = 'Username does not exist'
+        return render_template('login.html', message=message)
 
 @app.get('/add')
 def add():
