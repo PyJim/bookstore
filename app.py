@@ -61,7 +61,7 @@ def signup():
             return render_template('signup.html', message=message)
         else:
             password = bcrypt.generate_password_hash(password).decode('utf-8')
-            create_user(firstname, username, email, password)
+            create_user(firstname.capitalize(), username, email, password)
             message = f'Account created successfully'
             return render_template('login.html', message=message)
     # this will be run if the method is a GET method.
@@ -128,6 +128,9 @@ def add_book():
         if title and author:
             title, author = title.capitalize(), author.capitalize()
             add_user_book(title=title, author=author, user_id=user.id)
+        else:
+            message = "Please fill all the fields"
+            return render_template('add.html',message=message)
     return redirect(f'/{user.username}')
 
 @app.get('/edit_user')
@@ -148,7 +151,7 @@ def edit_user_profile():
         firstname = request.form.get('firstname')
         current_password = request.form.get('current_password')
         new_password = request.form.get('new_password')
-        return change_user_details(user_id=user.id, firstname=firstname, username=username, email=email, new_password=new_password, current_password=current_password)
+        return change_user_details(user_id=user.id, firstname=firstname, email=email, new_password=new_password, current_password=current_password)
     return render_template('edit_user_profile.html',email=email,username=username, firstname=firstname, user=user)
 
 
@@ -166,6 +169,9 @@ def edit_particular_book():
         if title and author:
             title, author = title.capitalize(), author.capitalize()
             change_book_details(title=title, author=author, user_id=user.id)
+        else:
+            message = "Please fill all the fields"
+            render_template('edit_book.html', title=title, author=author, message=message)
     return render_template('edit_book.html', title=title, author=author)
 
 @app.post('/delete_book')

@@ -23,10 +23,8 @@ Completed Login
 - author
 - save button (redirect to user)
 
-3. ## Clear all books
-- clear button (redirect to user)
-
 4. ## others
 - auto add book icon/image to the book div
 - futher styling
 - delete user account
+- clear all books
