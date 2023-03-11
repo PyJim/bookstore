@@ -5,9 +5,10 @@ Completed Login
 
 ## show profile
 1. Show user profile on the side of users page (does not move)
-- dummy image for all
+- dummy image for all users
 - Name
 - username
+- email
 
 ## Edit profile page
 - Name
