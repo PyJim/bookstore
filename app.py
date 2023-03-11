@@ -4,7 +4,9 @@ from flask_bcrypt import Bcrypt
 import sqlite3
 from queries import create_user, check_user, PasswordCheck, EmailCheck
 from queries import signup_empty, signin_empty, find_user
-from queries import get_user_books, add_user_book, search_by_author, search_by_title, sort_books_by_author, sort_books_by_title, sort_books_by_date
+from queries import get_user_books, add_user_book, change_user_details
+
+
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///library.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -101,12 +103,12 @@ def users(username):
     user = find_user(username)
     if user:
         user_id = user.id
-        firstname = User.query.filter_by(id=user_id).first().firstname
+        current_user = User.query.filter_by(id=user_id).first().firstname
         books = get_user_books(user_id)
         book_titles = [book.title for book in books]
         book_authors = [book.author for book in books]
         book_dates = [book.date for book in books]
-        return render_template('user.html', titles=book_titles, authors=book_authors, dates=book_dates, firstname=firstname)
+        return render_template('user.html', titles=book_titles, authors=book_authors, dates=book_dates, current_user=current_user)
     else:
         message = 'Username does not exist'
         return render_template('login.html', message=message)
@@ -126,6 +128,26 @@ def add_book():
             title, author = title.capitalize(), author.capitalize()
             add_user_book(title=title, author=author, user_id=user.id)
     return redirect(f'/<{user.id}>')
+
+@app.route('/edit_profile', methods=['GET', 'POST'])
+def edit_user_profile():
+    global user
+    email = user.email
+    username = user.username
+    firstname = user.firstname
+
+    if request.method == 'POST':
+        username = request.form.get('username')
+        email = request.form.get('email')
+        firstname = request.form.get('firstname')
+        current_password = request.form.get('current_password')
+        new_password = request.form.get('new_password')
+        return change_user_details(user_id=user.id, firstname=firstname, username=username, email=email, new_password=new_password, current_password=current_password)
+
+
+    return render_template('edit_user_profile.html',email=email,username=username, firstname=firstname)
+
+
 
 
 if __name__ == '__main__':

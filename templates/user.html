@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ firstname }}</title>
+    <title>{{ current_user.firstname }}</title>
 </head>
 <body>
-    <p>Welcome {{ firstname }}</p>
+    <p>Welcome {{ current_user.firstname }}</p>
     {% for title in titles %}
         {% set ind = titles.index(title) %}
         <div>
@@ -16,6 +16,17 @@
             <p>{{ dates[ind] }}</p>
         </div>
     {% endfor %}
+
+    <div class="profile">
+        <img src="/static/images/dummy-profile-pic.png" alt="dummy profile photo">
+        <p>{{ current_user.firstname }}</p>
+        <p>{{ current_user.username }}</p>
+        <p>{{ current_user.email }}</p>
+
+        <a href="/edit_profile"><button type="submit">Edit profile</button></a>
+    </div>
+
+
     <a href="/add">Add Book</a>
     <br>
     <a href="/logout"><button type="submit">Logout</button></a>
