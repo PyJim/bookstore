@@ -29,3 +29,4 @@ Completed Login
 4. ## others
 - auto add book icon/image to the book div
 - futher styling
+- delete user account

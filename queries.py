@@ -89,10 +89,8 @@ def sort_books_by_author():
     new_order = Books.query.order_by(Books.author)
     return new_order
 
-def delete_all_books():
-    pass
 
-def delete_book():
+def delete_book(user_id, title, author):
     pass
 
 

@@ -4,7 +4,7 @@ from flask_bcrypt import Bcrypt
 import sqlite3
 from queries import create_user, check_user, PasswordCheck, EmailCheck
 from queries import signup_empty, signin_empty, find_user
-from queries import get_user_books, add_user_book, change_user_details, change_book_details
+from queries import get_user_books, add_user_book, change_user_details, change_book_details, delete_book
 
 
 app = Flask(__name__)
@@ -148,17 +148,30 @@ def edit_user_profile():
     return render_template('edit_user_profile.html',email=email,username=username, firstname=firstname, user=user)
 
 
-@app.route('/edit_book', methods=['GET', 'POST'])
+@app.post('/edit_book')
 def edit_book():
+    title = request.form.get('title')
+    author = request.form.get('author')
+    return render_template('edit_book.html', title=title, author=author, user=user)
+
+@app.route('/edit_particular_book', methods=['GET', 'POST'])
+def edit_particular_book():
     if request.method == 'POST':
         title = request.form.get('title')
         author = request.form.get('author')
-
         if title and author:
             title, author = title.capitalize(), author.capitalize()
             change_book_details(title=title, author=author, user_id=user.id)
-    
-    return render_template('edit_book.html')
+    return render_template('edit_book.html', title=title, author=author)
+
+@app.post('/delete_book')
+def delete_book():
+    title = request.form.get('title')
+    author = request.form.get('author')
+
+    if title and author:
+        title, author = title.capitalize(), author.capitalize()
+        delete_book(user_id=user.id, title=title, author=author)
 
 
 if __name__ == '__main__':
