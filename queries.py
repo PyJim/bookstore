@@ -96,7 +96,7 @@ def delete_book():
     pass
 
 
-def change_book_details():
+def change_book_details(user_id, title, author):
     pass
 # editing details
 def change_user_details(user_id, firstname, username, email, new_password, current_password):
