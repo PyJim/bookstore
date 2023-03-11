@@ -90,6 +90,12 @@ def login():
             return render_template('login.html', message=message)
     return render_template('login.html')
 
+@app.get('/logout')
+def logout():
+    global user
+    user = None
+    return redirect('/')
+
 @app.route('/<username>', methods=['GET','POST'])
 def users(username):
     user_id = User.query.filter_by(username=username).first().id
