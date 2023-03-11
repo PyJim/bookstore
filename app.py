@@ -104,12 +104,12 @@ def users(username):
     user = find_user(username)
     if user:
         user_id = user.id
-        current_user = User.query.filter_by(id=user_id).first().firstname
+        current_user = User.query.filter_by(id=user_id).first()
         books = get_user_books(user_id)
         book_titles = [book.title for book in books]
         book_authors = [book.author for book in books]
         book_dates = [book.date for book in books]
-        return render_template('user.html', titles=book_titles, authors=book_authors, dates=book_dates, current_user=current_user)
+        return render_template('user.html', titles=book_titles, authors=book_authors, dates=book_dates, current_user=current_user, length=len(book_titles))
     else:
         message = 'Username does not exist'
         return render_template('login.html', message=message)

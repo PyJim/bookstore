@@ -3,6 +3,7 @@
     top: 0;
     right: 0;
     display: flex;
+    flex-direction: column;
     align-items: flex-start; /* Align items to the top */
     background-color: white;
     padding: 20px;
