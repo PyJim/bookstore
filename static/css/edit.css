@@ -42,11 +42,11 @@ form input {
     width: 400px;
     box-sizing: border-box;
     border-radius: 5px;
-    border: 1px solid #73c3f5;
+    border: 1px solid  #007bff;
 }
 
 button[type="submit"] {
-    background-color: #73c3f5;
+    background-color: #007bff;
     color: #fff;
     padding: 10px 20px;
     border: none;
@@ -60,11 +60,11 @@ button[type="submit"]:hover {
 }
 h3{
     font-size: 34px;
-    color: #73c3f5;
+    color:  #007bff;
 }
 
 a{
-    background-color: #73c3f5;
+    background-color:  #007bff;
     color: #fff;
     padding: 10px 20px;
     border: none;

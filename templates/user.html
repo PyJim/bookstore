@@ -16,40 +16,38 @@
         <p>{{ current_user.username }}</p>
         <p>{{ current_user.email }}</p>
         <a href="/edit_user"><button type="submit">Edit</button></a>
+        <a href="/logout" class="logout-link">Logout</a>
     </div>
+<div class="book-container">
     {% for i in range(length) %}
-        <div class={{number}}>
+        <div class="number">
             <p>{{i+1}}</p>
             <h4>{{ titles[i] }}</h4>
             <p>{{ authors[i] }}</p>
             <p>{{ dates[i] }}</p>
 
             <form action="{{ url_for("edit_book") }}" method="post">
-                <label for="title">title</label>
+                <label for="title"></label>
                 <input type="text" name="title" value='{{ titles[i] }}' readonly>
             
-                <label for="author">author</label>
+                <label for="author"></label>
                 <input type="text" name="author" value='{{ authors[i] }}' readonly>
-            
                 <button type="submit">Edit</button>
             </form>
-
             <form action="{{ url_for("delete_book") }}" method="post">
-                <label for="title">title</label>
+                <label for="title"></label>
                 <input type="text" name="title" value='{{ titles[i] }}' readonly>
-            
-                <label for="author">author</label>
+                <label for="author"></label>
                 <input type="text" name="author" value='{{ authors[i] }}' readonly>
-            
                 <button type="submit">Delete</button>
             </form>
 
         </div>
     {% endfor %}
+</div>
     <div class="buttons-container">
         <a href="/add" class="add-link">Add Book</a>
         <br>
-        <a href="/logout" class="logout-link">Logout</a>
     </div>
 </body>
 </html>
