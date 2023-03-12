@@ -35,16 +35,15 @@ label {
 }
 
 
-input[type="text"] {
-    display: block;
-    width: 100%;
+form input {
+    font-size: 16px;
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
     margin-bottom: 20px;
+    width: 400px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #73c3f5;
 }
-
 
 button[type="submit"] {
     background-color: #73c3f5;
@@ -53,8 +52,28 @@ button[type="submit"] {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-top: 10px;
 }
 
 button[type="submit"]:hover {
+    background-color: #9077ed;
+}
+h3{
+    font-size: 34px;
+    color: #73c3f5;
+}
+
+a{
+    background-color: #73c3f5;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    text-decoration: none;
+}
+
+a:hover {
     background-color: #9077ed;
 }
