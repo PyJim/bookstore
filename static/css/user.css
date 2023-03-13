@@ -21,6 +21,7 @@ body {
     margin-top: 200px;
     position: sticky;
     top: 0;
+       background-color: #FAF9F6;
     
   }
   
@@ -31,21 +32,17 @@ body {
     border-radius: 40px;
     width: 150px;
   }
-  
-  /* Set the width and overflow of the book container div */
-  .book-container {
-    border-radius: 10px;
-  }
+
   
   /* Set the border for each book div */
   .book-container .number {
     padding: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     border-radius: 10px;
     color:  #007bff;
     max-width: 50%;
     background-color: #FAF9F6;
-    box-shadow: #2b828b;
+    box-shadow: #030303;
     
   }
   
@@ -75,7 +72,7 @@ body {
   /* Style the edit and delete buttons */
   /* Style the edit and delete buttons */
 form button[type="submit"] {
-    display: inline-block; /* add this rule to make buttons display side by side */
+    display: flex; 
     margin-top: auto;
     margin-left: auto;
     background-color: #007bff;
@@ -93,9 +90,8 @@ form button[type="submit"] :hover{
   /* Style the delete button */
   #del {
     background-color: red;
-    display: inline-block; /* add this rule to make button display side by side */
+    display: flex;
     margin-top: auto;
-    margin-left: 10px; /* Add margin to separate the buttons */
     color: white;
     border: none;
     border-radius: 4px;

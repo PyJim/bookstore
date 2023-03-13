@@ -22,10 +22,11 @@ form {
   
 
 .profile img {
-    max-width: 25%;
-    height: auto;
-    border-radius: 50%;
-    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+    margin-top: 40px;
+    border-radius: 40px;
+    width: 150px;
 }
 
 label {
@@ -56,7 +57,7 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    background-color: #9077ed;
+    background-color: aqua;
 }
 h3{
     font-size: 34px;
