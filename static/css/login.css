@@ -54,7 +54,7 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    background-color: #2e63e8;
+    background-color:aqua;
 }
 p {
     text-align: center;
@@ -88,6 +88,6 @@ a {
 }
 
 .closebtn:hover {
-    color: #2e63e8;
+   color: aqua;
 }
  

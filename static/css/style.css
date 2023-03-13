@@ -23,7 +23,6 @@ a {
   background-color: #007bff;
   text-decoration: none;
   font-weight: bold;
-  border: 2px solid #007bff;
   padding: 5px 10px;
   border-radius: 5px;
   width: 150px;
@@ -31,7 +30,7 @@ a {
 }
 
 a:hover {
-  background-color: #447ad2;
+  background-color: aqua;
   color: white;
 }
 

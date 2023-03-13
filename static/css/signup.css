@@ -9,7 +9,7 @@ body {
     flex-direction: column;
   }
 form {
-    margin-top: 150px;
+    margin-top: 400px;
     width: 25%;
     padding: 20px;
     text-align: center;
@@ -84,5 +84,5 @@ button[type="submit"]:hover {
 }
 
 .closebtn:hover {
-    color: #2e63e8;
+    color:aqua;
 }
